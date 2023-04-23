@@ -3,12 +3,17 @@ package hashColisao;
 public class EstruturaHashTable implements EstruturaDeDados {
     private Integer tabela[];
     private Integer porao[];
-
+    
     public EstruturaHashTable() {
         tabela = new Integer[1000];
         porao = new Integer[100];
     }
-
+    
+    public int Hash(int chave) {
+        int retornoHash = chave % tabela.length;
+        return retornoHash;
+    }
+    
     @Override
     public boolean insert(int chave) {
         int indice = Hash(chave);
@@ -64,8 +69,4 @@ public class EstruturaHashTable implements EstruturaDeDados {
         return -1;
     }
 
-    public int Hash(int chave) {
-        int retornoHash = chave % tabela.length;
-        return retornoHash;
-    }
 }
