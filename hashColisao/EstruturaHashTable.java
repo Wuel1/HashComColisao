@@ -16,12 +16,13 @@ public class EstruturaHashTable implements EstruturaDeDados {
             tabela[indice] = chave;
             return true;
         } else {            
-            while(indice <= porao.length){
-                if(porao[indice] == null){
-                   porao[indice] = chave;
+            int indicePorao = indice;
+            while(indicePorao < porao.length){
+                if(porao[indicePorao] == null){
+                   porao[indicePorao] = chave;
                    return true;
                 }
-                indice++;
+                indicePorao++;
             }
         }
         return false;
@@ -34,14 +35,13 @@ public class EstruturaHashTable implements EstruturaDeDados {
             tabela[indice] = null;
             return true;
         } else{
-            if(tabela[indice] != null && tabela[indice] != chave){
-                while(indice <= porao.length){
-                    if(porao[indice] != null && porao[indice] == chave){
-                       porao[indice] = null;
-                       return true;
-                    }
-                    indice++;
+            int indicePorao = indice;
+            while(indicePorao < porao.length){
+                if(porao[indicePorao] != null && porao[indicePorao] == chave){
+                   porao[indicePorao] = null;
+                   return true;
                 }
+                indicePorao++;
             }
         }
         return false;
@@ -52,11 +52,19 @@ public class EstruturaHashTable implements EstruturaDeDados {
         int indice = Hash(chave);
         if (tabela[indice] != null && tabela[indice] == chave) {
             return indice;
+        } else{
+            int indicePorao = 0;
+            while(indicePorao < porao.length){
+                if(porao[indicePorao] != null && porao[indicePorao] == chave){
+                    return indicePorao + tabela.length;
+                }
+                indicePorao++;
+            }
         }        
         return -1;
     }
 
-    private int Hash(int chave) {
+    public int Hash(int chave) {
         int retornoHash = chave % tabela.length;
         return retornoHash;
     }
