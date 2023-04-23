@@ -33,7 +33,17 @@ public class EstruturaHashTable implements EstruturaDeDados {
         if (tabela[indice] != null && tabela[indice] == chave) {
             tabela[indice] = null;
             return true;
-        } 
+        } else{
+            if(tabela[indice] != null && tabela[indice] != chave){
+                while(indice <= porao.length){
+                    if(porao[indice] != null && porao[indice] == chave){
+                       porao[indice] = null;
+                       return true;
+                    }
+                    indice++;
+                }
+            }
+        }
         return false;
     }
 
